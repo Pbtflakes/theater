@@ -8,7 +8,8 @@ using namespace std;
 const int ROWS = 15, COLS = 30;
 const bool DEBUG = true;
 
-void	putseats(int[][COLS]);
+void	putseats(char[][COLS]);
+void	printseats(char[][COLS]);
 
 int main() {
 	char seatchart[ROWS][COLS];
@@ -19,12 +20,17 @@ int main() {
 			seatchart[i][j] = '*';
 		}
 	}
+
+	printseats(seatchart);
 	
+	return 0;
+}
+
+void printseats(char chart[][COLS]) {
 	for (int i = 0; i < ROWS; i++) {
 		for (int j = 0; j < COLS; j++) {
-			cout << seatchart[i][j];
+			cout << chart[i][j];
 		}
 		cout << endl;
 	}
-	return 0;
 }
