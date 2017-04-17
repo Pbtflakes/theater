@@ -8,29 +8,46 @@ using namespace std;
 const int ROWS = 15, COLS = 30;
 const bool DEBUG = true;
 
-void	putseats(char[][COLS]);
-void	printseats(char[][COLS]);
+void	putSeats(char[][COLS]);
+void	printSeats(char[][COLS]);
+void	seatInput(char[][COLS]);
 
 int main() {
-	char seatchart[ROWS][COLS];
-	int rowprice[ROWS];
+	char seatChart[ROWS][COLS];
 
 	for (int i = 0; i < ROWS; i++) {
 		for (int j = 0; j < COLS; j++) {
-			seatchart[i][j] = '*';
+			seatChart[i][j] = '*';
 		}
 	}
-
-	printseats(seatchart);
-	
 	return 0;
 }
 
-void printseats(char chart[][COLS]) {
+/* Generic seating printer */
+void printSeats(char chart[][COLS]) {
+	cout << "\tSeats\n\t";
+	for (int i = 1; i <= 30; i++) {
+		cout << i % 10;
+	}
+	cout << endl;
 	for (int i = 0; i < ROWS; i++) {
+		cout << "Row " << i + 1 << '\t';
 		for (int j = 0; j < COLS; j++) {
 			cout << chart[i][j];
 		}
 		cout << endl;
 	}
+}
+
+void seatInput(char seats[][COLS]) {
+	printSeats(seats); /* Reduce clutter in main */
+	short row, col;
+	do {
+		cout << "Row:\t";
+		cin >> row;
+		cout << "Seat:\t";
+		cin >> col;
+	} while (col < 1 || col > COLS || row < 1 || row > ROWS ||
+			seats[row - 1][col - 1] == '#');
+	seats[row - 1][col - 1] = '#';
 }
